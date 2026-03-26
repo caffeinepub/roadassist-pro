@@ -34,6 +34,7 @@ export default function App() {
   useEffect(() => {
     if (!identity || !actor) {
       setProfile(undefined);
+      setLoadingProfile(false);
       return;
     }
     setLoadingProfile(true);
@@ -46,21 +47,20 @@ export default function App() {
       .finally(() => setLoadingProfile(false));
   }, [identity, actor]);
 
-  if (isInitializing || isFetching || loadingProfile) {
-    return (
-      <div className="min-h-screen bg-[#0B0D10] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-[#E0242A] border-t-transparent rounded-full animate-spin" />
-          <p className="text-[#A7B0BC] text-sm">Loading RoadAssist Pro...</p>
-        </div>
+  const Loading = () => (
+    <div className="min-h-screen bg-[#0B0D10] flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-12 h-12 border-4 border-[#E0242A] border-t-transparent rounded-full animate-spin" />
+        <p className="text-[#A7B0BC] text-sm">Loading RoadAssist Pro...</p>
       </div>
-    );
-  }
+    </div>
+  );
 
+  if (isInitializing || isFetching) return <Loading />;
   if (!identity) return <LoginPage />;
+  if (loadingProfile || profile === undefined) return <Loading />;
   if (profile === null)
     return <Onboarding onComplete={(p) => setProfile(p)} actor={actor!} />;
-  if (profile === undefined) return null;
 
   const renderPage = () => {
     switch (currentPage) {

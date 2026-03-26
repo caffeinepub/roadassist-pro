@@ -1,4 +1,4 @@
-import { Flame, MapPin, Shield, Zap } from "lucide-react";
+import { MapPin, Shield, Zap } from "lucide-react";
 import { useInternetIdentity } from "../hooks/useInternetIdentity";
 
 export default function LoginPage() {
@@ -6,28 +6,25 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0B0D10] to-[#14171C] flex flex-col">
-      {/* Header */}
       <header className="px-8 py-5 flex items-center gap-3">
-        <Flame className="text-[#E0242A] w-8 h-8" />
         <span className="text-xl font-bold text-[#E9EEF5]">RoadAssist Pro</span>
       </header>
 
-      {/* Hero */}
       <div className="flex-1 flex items-center justify-center px-4">
         <div className="max-w-md w-full">
           <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#E0242A]/10 border border-[#E0242A]/30 mb-6">
-              <Flame className="w-10 h-10 text-[#E0242A]" />
+              <MapPin className="w-10 h-10 text-[#E0242A]" />
             </div>
-            <h1 className="text-4xl font-bold text-[#E9EEF5] mb-3">
-              RoadAssist Pro
+            <h1 className="text-4xl font-bold text-[#E9EEF5] mb-3 leading-tight">
+              Stranded on road?{" "}
+              <span className="text-[#E0242A]">We&apos;ve got you!!</span>
             </h1>
             <p className="text-[#A7B0BC] text-lg">
-              Real-time fuel & breakdown assistance when you need it most
+              Real-time fuel &amp; breakdown assistance when you need it most
             </p>
           </div>
 
-          {/* Features */}
           <div className="grid grid-cols-3 gap-4 mb-10">
             {[
               { icon: <Zap className="w-5 h-5" />, label: "Fast Response" },
